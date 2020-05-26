@@ -3,29 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="main.js"></script>
+    <script defer src="main.js"></script>
     <title>Home page and for now, testing</title>
 </head>
 <body>
     <div>
         <h2>Welcome to Bird Banders</h2>
     </div>
-    <div id="navigation-buttons">
-        <form action="http://localhost:3001/index">
-            <input type="submit" value="New research group" />
+    <p class="is-logged-in">You are not logged in</p>
+    <div id="login-forms-container">
+        <form class="login-form">
+            <input name="username" type="text" placeholder="username">
+            <input name="password" type="password" placeholder="password">
+            <button type="submit">Log in</button>
         </form>
-        <form action="researchGroups.html">
-            <input type="submit" value="Research groups" />
-        </form>
-        <form action="http://localhost:3001/index">
-            <input type="submit" value="My user page" />
-        </form>
-        <form action="http://localhost:3001/index">
-            <input type="submit" value="Upload data" />
-        </form>
-        <form action="http://localhost:3001/index">
-            <input type="submit" value="Queries" />
-        </form>
+        <button id="create-account-button">Create account</button>
+        <p></p>
     </div>
+    <!-- <div id="test-button-container">
+        <button id="get-users">Get users</button>
+    </div> -->
+    <div id="navigation-buttons">
+        <a href="/myProfile.html">Go to my profile page</a>
+        <p></p>
+        <a href="/uploadData.html">Upload Data</a>
+        <p></p>
+        <a href="/researchGroups.html">Research groups</a>
+        <p></p>
+        <a href="">Queries</a>
+        <p></p>
+    </div>
+    <button id="logout">Logout</button>
+
 </body>
 </html>
