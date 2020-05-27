@@ -12,12 +12,14 @@ const authHeaders = {
 }
 
 function setIsLoggedIn(){
+    console.log('token', localStorage.getItem("token"));
+    
     isLoggedIn.textContent = localStorage.getItem("token")
-    ? "You are logged in"
+    ? `Hello, ${localStorage.getItem('username')}, you are logged in`
     : "You are not logged in"
 }
 
-setIsLoggedIn
+setIsLoggedIn()
 loginForm.addEventListener("submit", handleLogin);
 getCreateAccountButton.addEventListener("click", handleCreateAccountForm)
 

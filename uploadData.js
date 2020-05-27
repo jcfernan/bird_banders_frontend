@@ -40,14 +40,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     age: newAge,
                     location: newLocation
                 }}
-            console.log("New capture: ", newCapture)
+
 
             saveCaptureToDB(newCapture)
             function saveCaptureToDB(newCapture){
                 console.log('hello from inside save capture');
-                
-                capturesUrl = 'http://localhost:3000/captures'
+                console.log("New capture: ", newCapture)
 
+                capturesUrl = 'http://localhost:3000/captures'
+                function parseJSON(response){
+                    return response.json()
+                }
                 fetch(
                     capturesURL, 
                     {
