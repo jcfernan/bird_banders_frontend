@@ -60,6 +60,11 @@ function displayMyGroups(response){
                 }
             });
         });
+        if (userGroupsDiv.children.length < 2){
+            const notPartOfGroup = document.createElement('p')
+            notPartOfGroup.textContent = "You currently do not  belong to any groups."
+            userGroupsDiv.append(notPartOfGroup)
+        }
     }
 
     function createGroupsContainer(){

@@ -169,39 +169,13 @@ function saveNewUserToDB(newUser){
     .then(tellNewUserToLogIn)
 
     function tellNewUserToLogIn(){
-        // const userMessage = document.createElement('p')
-        // userMessage.textContent = "You have successfully created an account! Please log in."
         const getUserMessage = document.querySelector('.is-logged-in')
         getUserMessage.textContent = "You have successfully created an account! Please log in."
         const getCreateFormTitle = document.querySelector('#form-title')
         getCreateFormTitle.remove()
-        //getUserMessage.append(userMessage)
+
     }
 }
-
-// function handleGoToProfile(event){
-//     event.preventDefault();
-//     const myToken = localStorage.token
-//     console.log('token', myToken);
-
-//     // return fetch('http://localhost:8080/clients', {
-//     //     method: 'GET',
-//     //     headers: myHeaders,
-//     //   })
-      
-//     //   .then(
-//     console.log('token info: ', myToken.payload) //["user_id"]?.string);
-    
-
-//     fetch ("http://localhost:3000/users", {
-//         method: 'GET',
-//         headers: {
-//           "Content-Type": "application/json",
-//           "Authorization": `Bearer ${myToken}` 
-//         }
-//     }).then(console.log('myToken.payload', myToken.payload))
-    
-// }
 
 function logout(){
     localStorage.removeItem("token")
