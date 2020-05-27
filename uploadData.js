@@ -18,12 +18,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         event.preventDefault()
         console.log('Hello from inside event list');
         
-        //create a capture
         createCapture(event)
-        // check to see if bird exists or not, and from that either grab bird id or create new bird
-        //createBirdOrGrabId(event)
-        // create a bird_capture 
-        //createBirdCapture(event)
 
         function createCapture(event){
             event.preventDefault();
@@ -59,8 +54,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         body: JSON.stringify(newCapture)
                     })
                     .then(parseJSON)
-                    .then("saved to db: ", console.log)
+                    .then(createHiddenCapture)
             }
+
+            function createHiddenCapture(capture){
+                console.log('capture', capture);
+                const hiddenCapture = document.createElement('p')
+                hiddenCapture.textContent = `${capture.id}` 
+                hiddenCapture.id = "capture-id"
+                document.body.append(hiddenCapture)               
+            }
+
             createBirdOrGrabId(event)
             function createBirdOrGrabId(event){
                 console.log('2. hello from create or grab bird');
@@ -102,17 +106,55 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     
                 }
 
-                
-                
-                
                 function createBirdCapture(bird){
                     console.log('3. hey from create bird capture');
                     console.log('bird_id', bird.id);
-                    console.log('user_id', localStorage.user_id);
-                    console.log('capture');
+                    console.log('membership_id');
+                    const birdId = bird.id
+                    function getmembershipId(){
+                        const getCurrentOption = document.getElementById('research-group-select')
+                        console.log('current option', getCurrentOption.value);
+                        const optionValue = getCurrentOption.value
+                        
+                        return parseInt(optionValue)
+                    }
+
+                    function getCaptureIDFromDom(){
+                        const getCaptureId = document.getElementById('capture-id')
+                        console.log('getcaptureid', getCaptureId);
+                        
+                        const CaptureIdNum = parseInt(getCaptureId.textContent)
+                        console.log('capture', CaptureIdNum);
+                        return CaptureIdNum
+                    }
+
+                    const captureId = getCaptureIDFromDom()
+                    const membershipId = getmembershipId()
+                    console.log('capture id:', captureId);
+                    console.log('membership_id', membershipId);
                     
+                    const newBirdCapture = {
+                        birdCapture: {
+                            membership_id: membershipId,
+                            bird_id: birdId,
+                            capture_id: captureId
+                        }
+                    }
                     
-                    
+                    console.log('bird capture object: ', newBirdCapture);
+                    birdCapsUrl = `http://localhost:3000/bird_captures`
+                    fetch(birdCapsUrl, {
+                        method: 'POST',
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify(newBirdCapture)
+                    })
+                    .then(parseJSON)
+                    .then(displayCreatedBirdCapture)
+
+                    function displayCreatedBirdCapture(response){
+                        console.log('reponse:', response);
+                        
+                    }
                     
                 }
             }
@@ -162,7 +204,8 @@ function createGroupOptions(response, getGroupSelect){
                 if (membership.research_group_id == group.id){
                     const getGroupSelect = document.getElementById('research-group-select')
                     const listOption = document.createElement('option')
-                    listOption.value = group.id
+                    // listOption.value = group.id
+                    listOption.value = membership.id
                     listOption.innerHTML = group.name
                     getGroupSelect.append(listOption)
                 }
