@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Upload Field Data</h1>
-    <form action="">
+    <!-- <form action="">
 
         <select name="research-group-select" id=""></select>
         <input type="text" placeholder="band number" name="band-num">
@@ -19,6 +19,19 @@
         <input type="text" placeholder="transmitter number" name="trans-num">
         <input type="text" placeholder="field remarks" name="field-remark">
         <input type="submit" value="Submit Bird Capture">
+    </form> -->
+
+    <form id="create-capture-form">
+        <label for="">Research group: </label>
+        <select name="research-group-select" id="research-group-select"></select>
+        <p></p>
+        <input type="text" placeholder="bird band id" name="bandId">
+        <input type="text" placeholder="gender" name="gender">
+        <input type="text" placeholder="age" name="age">
+        <input type="text" placeholder="location" name="location">
+
+        <input type="submit" value="Submit Bird Capture" id="capture-form">
+        <p></p>
 
     </form>
     <form action="http://localhost:3001/index">

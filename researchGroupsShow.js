@@ -16,12 +16,15 @@ function displayGroups(groups){
 function displayGroup(group){
     const getList = document.querySelector('#research-list')
     const divForGroup = document.createElement('ul')
-    divForGroup.id = group.name
+    divForGroup.id = `group-id-${group.id}`
 
     getList.append(divForGroup)
 
     const joinButton = document.createElement('button')
+    joinButton.id = `button-group-id-${group.id}`
     joinButton.textContent = "Join this group"
+
+    joinButton.addEventListener('click', handleJoinGroup)
 
     const groupItem = document.createElement('li');
     groupItem.innerHTML = `<a href=research_group.html?id=${group.id}>${group.name}</a>`
@@ -39,12 +42,86 @@ function displayUsers(members, ul){
     members.forEach(member => {
         const memberName = member.user.name
         const memberListItem = document.createElement('li');
-        // memberListItem.innerHTML = memberName
-        console.log('member', member.user.id);
+        // console.log('member', member.user.id);
         
         memberListItem.innerHTML = `<a href=userShow.html?id=${member.user.id}>${memberName}</a>`
 
         ul.append(memberListItem)
     });
     
+}
+
+function handleJoinGroup(event){
+    
+    const authHeaders = {
+        Authorization: `bearer ${localStorage.token}`
+    }
+    // console.log('token', localStorage.user_id);
+    // console.log('event', event.target.id.slice(-1));
+
+    const groupId = event.target.id.slice(-1)
+
+    saveNewMembershipToDB(groupId)
+    
+}
+
+function saveNewMembershipToDB(groupId){
+
+    // console.log('groupid', groupId);
+    
+    
+
+    membershipsURL = 'http://localhost:3000/memberships'
+
+    fetch(membershipsURL)
+    .then(parseJSON)
+    .then(checkIfExists)
+    .then(saveToDB)
+    
+    function parseJSON(response){
+    return response.json()
+    }
+
+    function checkIfExists(response){
+        let inGroup = false;
+        for (let i = 0; i < response.length; i++){
+            if (response[i].research_group_id == groupId){
+                console.log('inside for if ');
+                console.log('reponse[i]userid', response[i].user_id);
+                console.log('localstorage', localStorage.user_id);
+                
+                if (response[i].user_id == localStorage.user_id){
+                    console.log('You are already part of this group');
+                    inGroup = true;
+                    break;
+                }
+            }
+        }
+        if (!inGroup) {
+            console.log('You are not part of this group');
+            return response
+        }
+    }
+    function saveToDB(response){
+        membershipsURL = 'http://localhost:3000/memberships'
+
+        const newMembership = {
+            membership: {
+                user_id: localStorage.user_id,
+                research_group_id: groupId
+            }
+        }
+
+        console.log('newmembership var', newMembership);
+        fetch(
+            membershipsURL, 
+            {
+                method: 'POST',
+                headers: {'content-type': 'application/json'},
+                body: JSON.stringify(newMembership)
+            })
+            .then(parseJSON)
+            .then("saved to db: ", console.log)
+    }
+
 }

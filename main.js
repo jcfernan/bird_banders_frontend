@@ -51,7 +51,13 @@ function handleLogin(event){
     }).then(response => response.json())
         .then(result => {
             console.log('result: ', result.token)
+            console.log('username: ', result.username)
+            console.log('userid', result.user_id);
+            
+
             localStorage.setItem('token', result.token)
+            localStorage.setItem('username', result.username)
+            localStorage.setItem('user_id', result.user_id)
             setIsLoggedIn()
         })
     event.target.reset();    
@@ -186,6 +192,7 @@ function saveNewUserToDB(newUser){
 
 function logout(){
     localStorage.removeItem("token")
+    localStorage.removeItem('username')
 }
 
 logoutButton.addEventListener("click", ()=>{
@@ -193,6 +200,7 @@ logoutButton.addEventListener("click", ()=>{
     setIsLoggedIn()
 })
 
-// function reject(){
-//     // window.replace ... basically a redirect 
-// }
+function reject(){
+    window.alert("Please log in to see your profile");
+    window.location("/")
+}
