@@ -19,13 +19,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         console.log('Hello from inside event list');
         
         //create a capture
-        createBirdCapture(event)
+        createCapture(event)
         // check to see if bird exists or not, and from that either grab bird id or create new bird
-        createBirdOrGrabId(event)
+        //createBirdOrGrabId(event)
         // create a bird_capture 
         createBirdCapture(event)
 
-        function createBirdCapture(event){
+        function createCapture(event){
             event.preventDefault();
             console.log('1. Hello from inside the create bird capture');
             
@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 console.log('hello from inside save capture');
                 console.log("New capture: ", newCapture)
 
-                capturesUrl = 'http://localhost:3000/captures'
+                capturesURL = 'http://localhost:3000/captures'
                 function parseJSON(response){
                     return response.json()
                 }
@@ -61,10 +61,32 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     .then(parseJSON)
                     .then("saved to db: ", console.log)
             }
-
+            createBirdOrGrabId(event)
             function createBirdOrGrabId(event){
                 console.log('2. hello from create or grab bird');
+                // check to see if bird exists or not, and from that either grab bird id or create new bird
+                birdsURL = 'http://localhost:3000/birds'
+                fetch(birdsURL)
+                .then(parseJSON)
+                .then(checkIfExists)
 
+                function checkIfExists(response){
+                    const formData = new FormData(captureForm)        
+                    const checkbandId = formData.get('bandId')
+    
+                    const checkBird = {
+                        bird: {
+                            bandId: checkbandId
+                        }}
+
+                        console.log('response', response);
+                        
+                }
+                
+
+                
+                
+                
                 function createBirdCapture(event){
                     console.log('3. hey from create bird capture');
                     
