@@ -70,6 +70,7 @@ function handleCreateAccountForm(event){
     
     const createFormTitle = document.createElement('h3')
     createFormTitle.textContent = "Create your account: "
+    createFormTitle.id = "form-title"
     getloginFormDiv.append(createFormTitle)
 
     const newForm = document.createElement('form')
@@ -165,7 +166,17 @@ function saveNewUserToDB(newUser){
                         body: JSON.stringify(newUser)
                     }
         )
-    .then(console.log('saved to db'))
+    .then(tellNewUserToLogIn)
+
+    function tellNewUserToLogIn(){
+        // const userMessage = document.createElement('p')
+        // userMessage.textContent = "You have successfully created an account! Please log in."
+        const getUserMessage = document.querySelector('.is-logged-in')
+        getUserMessage.textContent = "You have successfully created an account! Please log in."
+        const getCreateFormTitle = document.querySelector('#form-title')
+        getCreateFormTitle.remove()
+        //getUserMessage.append(userMessage)
+    }
 }
 
 // function handleGoToProfile(event){
