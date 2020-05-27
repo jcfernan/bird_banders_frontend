@@ -101,7 +101,65 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         createBirdCapture(bird)
                     }
                     else {
-                        console.log('Bird does not exist, please enter the species');
+                        console.log('This appears to be a new bird, please enter the species: ');
+                        const newBirdMessage = document.createElement('p')
+                        newBirdMessage.id = "new-bird-message"
+                        newBirdMessage.textContent = "This appears to be a new bird, please additionally enter the species: "
+                        const getForm = document.getElementById('create-capture-form')
+                        const getSpeciesDiv = document.getElementById('species-input')
+
+                        const speciesInput = document.createElement('input')
+                        speciesInput.id = "species-input-field"
+                        speciesInput.placeholder = "species"
+                        speciesInput.style.borderColor = "red"
+                        speciesInput.name = "species"
+
+                        getSpeciesDiv.append(speciesInput)
+                        getForm.prepend(newBirdMessage)
+                        
+                        const getFormButton = document.getElementById('capture-form')
+                        getFormButton.disabled = true
+                        //getFormButton.remove()
+
+                        const newFormButton = document.createElement('button')
+                        newFormButton.id = "new-form-button"
+                        newFormButton.textContent = "Submit Bird Capture"
+                        getForm.append(newFormButton)
+
+                        newFormButton.addEventListener('click', handleNewFormButton)
+
+                        function handleNewFormButton(event){
+                            event.preventDefault()
+                            console.log('Ive been clicked');
+
+                            const formData = new FormData(captureForm)        
+                            const newBandId = formData.get('bandId')
+                            const newSpecies = formData.get('species')
+            
+                            const newBird = {
+                                bird: {
+                                    bandId: newBandId,
+                                    species: newSpecies
+                                }}
+
+                            console.log('newbird', newBird);
+                            const newBirdsURL = 'http://localhost:3000/birds'
+                            
+                            fetch(newBirdsURL, {
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify(newBird)
+                            })
+                            .then(parseJSON)
+                            .then(displayNewBirdResult)
+
+                            function displayNewBirdResult(result){
+                                console.log('result', result);
+                                createBirdCapture(result)
+                            }
+                        }
                     }
                     
                 }
@@ -153,6 +211,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     function displayCreatedBirdCapture(response){
                         console.log('reponse:', response);
+                        console.log('Everything has been doneRIGHT', );
+                        const getFormButton = document.getElementById('capture-form')
+                        getFormButton.disabled = false
+
+                        const birdM = document.getElementById('new-bird-message')
+                        birdM.textContent = "You have successfully created a data entry!"
+
+                        const newFormButton = document.getElementById('new-form-button')
+                        newFormButton.remove()
+
+                        const speciesInput = document.getElementById('species-input-field')
+                        speciesInput.remove()
+                        
+                        const getForm = document.getElementById('create-capture-form')
+                        getForm.reset()
+
                         
                     }
                     
