@@ -33,6 +33,10 @@ function runProgram(event){
 
             if (newGender == "" || newAge == "" || newLocation == ""){
                 // console.log('empty fields');
+                const birdM = document.getElementById('new-bird-message')
+                if (birdM){
+                    birdM.remove()
+                }
                 const getErrorMessage = document.getElementById('error-message')
                 if (getErrorMessage){
                     getErrorMessage.remove()
@@ -78,6 +82,7 @@ function runProgram(event){
                 const hiddenCapture = document.createElement('p')
                 hiddenCapture.textContent = `${capture.id}` 
                 hiddenCapture.id = "capture-id"
+                hiddenCapture.style.visibility = "hidden";
                 document.body.append(hiddenCapture)               
             }
 
@@ -90,6 +95,10 @@ function runProgram(event){
 
                 if (checkbandId == "") {
                     // console.log('empty fields');
+                    const birdM = document.getElementById('new-bird-message')
+                    if (birdM){
+                        birdM.remove()
+                    }
                     const getErrorMessage = document.getElementById('error-message')
                     if (getErrorMessage){
                         getErrorMessage.remove()
@@ -171,6 +180,10 @@ function runProgram(event){
 
                             if (newBandId == "" || newSpecies == ""){
                                 // console.log('empty fields');
+                                const birdM = document.getElementById('new-bird-message')
+                                if (birdM){
+                                    birdM.remove()
+                                }
                                 const getErrorMessage = document.getElementById('error-message')
                                 if (getErrorMessage){
                                     getErrorMessage.remove()
@@ -290,6 +303,7 @@ function runProgram(event){
                         else {
                             const BirdMessage = document.createElement('p')
                             BirdMessage.textContent = "You have successfully created a data entry!"
+                            BirdMessage.id = 'new-bird-message'
                             const getForm = document.getElementById('create-capture-form')
                             getForm.prepend(BirdMessage)
                         }
