@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // check to see if bird exists or not, and from that either grab bird id or create new bird
         //createBirdOrGrabId(event)
         // create a bird_capture 
-        createBirdCapture(event)
+        //createBirdCapture(event)
 
         function createCapture(event){
             event.preventDefault();
@@ -64,31 +64,55 @@ window.addEventListener('DOMContentLoaded', (event) => {
             createBirdOrGrabId(event)
             function createBirdOrGrabId(event){
                 console.log('2. hello from create or grab bird');
-                // check to see if bird exists or not, and from that either grab bird id or create new bird
-                birdsURL = 'http://localhost:3000/birds'
-                fetch(birdsURL)
+
+                const formData = new FormData(captureForm)        
+                const checkbandId = formData.get('bandId')
+
+                const checkBird = {
+                    bird: {
+                        bandId: checkbandId
+                    }}
+
+                    console.log('checkbird', checkBird.bird.bandId);
+                    let bandId = checkBird.bird.bandId
+
+                birdsURL = 'http://localhost:3000/find-by-bandid'
+                fetch(birdsURL, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({bandId})
+                })
                 .then(parseJSON)
-                .then(checkIfExists)
+                .then(displayBirdResult)
 
-                function checkIfExists(response){
-                    const formData = new FormData(captureForm)        
-                    const checkbandId = formData.get('bandId')
-    
-                    const checkBird = {
-                        bird: {
-                            bandId: checkbandId
-                        }}
-
-                        console.log('response', response);
-                        
+                function parseJSON(response){
+                    return response.json()
                 }
-                
+
+                function displayBirdResult(bird){
+                    if (bird){
+                        console.log('Bird exists: ', bird);
+                        createBirdCapture(bird)
+                    }
+                    else {
+                        console.log('Bird does not exist, please enter the species');
+                    }
+                    
+                }
 
                 
                 
                 
-                function createBirdCapture(event){
+                function createBirdCapture(bird){
                     console.log('3. hey from create bird capture');
+                    console.log('bird_id', bird.id);
+                    console.log('user_id', localStorage.user_id);
+                    console.log('capture');
+                    
+                    
+                    
                     
                 }
             }
