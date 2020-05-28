@@ -85,13 +85,27 @@ function displayMyGroups(response){
         const groupList = document.createElement('ul')
         groupList.id = `group-${group.id}`
 
-        const leaveGroupButton = document.createElement('button')
-        leaveGroupButton.textContent = "Leave group"
+        // const leaveGroupButton = document.createElement('button')
+        // leaveGroupButton.value = group.id
+        // leaveGroupButton.textContent = "Leave group"
+
+        // leaveGroupButton.addEventListener("click", handleLeaveGroup)
+        // function handleLeaveGroup(event, groupId){
+        //     console.log('clicked leave group', event.target.value);
+
+        //     const groupId2 = event.target.value
+        //     const user_id = localStorage.user_id
+            
+            
+            
+            
+                        
+        // }
         
         const birdCapTitle = document.createElement('p')
         birdCapTitle.textContent = "Bird entries I've submitted to this group:"
 
-        userGroupsDiv.append(groupName, leaveGroupButton, birdCapTitle, groupList)
+        userGroupsDiv.append(groupName, birdCapTitle, groupList)
         return groupList
     }
 
@@ -103,5 +117,10 @@ function displayMyGroups(response){
             captureListElement.textContent = `Bird capture info: ${capture.id}`
             groupList.append(captureListElement)
         });
+        if (usersCaptures < 1){
+            const captureListMessage = document.createElement('li')
+            captureListMessage.textContent = "You currently do not have any data entries for this group."
+            groupList.append(captureListMessage)
+        }
     }
 }

@@ -61,11 +61,13 @@ function handleJoinGroup(event){
 
     const groupId = event.target.id.slice(-1)
 
-    saveNewMembershipToDB(groupId)
+    //event.target.remove()
+
+    saveNewMembershipToDB(groupId, event)
     
 }
 
-function saveNewMembershipToDB(groupId){
+function saveNewMembershipToDB(groupId, event){
 
     // console.log('groupid', groupId);
     
@@ -92,8 +94,25 @@ function saveNewMembershipToDB(groupId){
                 
                 if (response[i].user_id == localStorage.user_id){
                     console.log('You are already part of this group');
+
+                    const checkForMessage = document.getElementById('already-message')
+                    if (checkForMessage){
+                        checkForMessage.remove()
+                    }
+
+                    const alreadyPartMessage = document.createElement('p')
+                    alreadyPartMessage.id = "already-message"
+                    alreadyPartMessage.textContent = 'You are already part of this group.'
+
+                    function insertAfter(referenceNode, newNode) {
+                        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+                      }
+
+                    insertAfter(event.target, alreadyPartMessage)
+                    
                     inGroup = true;
-                    break;
+                    response = null
+                    return response
                 }
             }
         }
@@ -103,6 +122,7 @@ function saveNewMembershipToDB(groupId){
         }
     }
     function saveToDB(response){
+
         membershipsURL = 'http://localhost:3000/memberships'
 
         const newMembership = {
@@ -113,15 +133,17 @@ function saveNewMembershipToDB(groupId){
         }
 
         console.log('newmembership var', newMembership);
-        fetch(
-            membershipsURL, 
-            {
-                method: 'POST',
-                headers: {'content-type': 'application/json'},
-                body: JSON.stringify(newMembership)
-            })
-            .then(parseJSON)
-            .then("saved to db: ", console.log)
+        if (response){
+            fetch(
+                membershipsURL, 
+                {
+                    method: 'POST',
+                    headers: {'content-type': 'application/json'},
+                    body: JSON.stringify(newMembership)
+                })
+                .then(parseJSON)
+                .then("saved to db: ", console.log)
+        }
     }
 
 }
