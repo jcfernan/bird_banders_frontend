@@ -43,7 +43,6 @@ function displayUsers(members, ul, groupName){
     members.forEach(member => {
         const memberName = member.user.name
         const memberListItem = document.createElement('li');
-        //memberListItem.className = groupName
         // console.log('member', member.user.id);
         
         memberListItem.innerHTML = `<a href=userShow.html?id=${member.user.id}>${memberName}</a>`

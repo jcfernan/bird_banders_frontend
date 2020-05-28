@@ -78,7 +78,10 @@ function getMembers(group){
         birdArrayUniq.forEach(bird => {
             const birdOfGroup = document.createElement('li')
             birdOfGroup.innerHTML = `<a href=birdShow.html?id=${bird.id}>${bird.bandId}</a>`
-            const getBirdslist = document.querySelector('#birds-list-ul')
+            //const getBirdslist = document.querySelector('#birds-list-ul')
+            const getBirdslist = document.getElementById('birds-list')
+            console.log('getbirdslist', getBirdslist);
+            
             // console.log('getBirdlist', getBirdslist);
             getBirdslist.append(birdOfGroup)
         });
@@ -117,7 +120,7 @@ function getMembers(group){
         captureArrayUniq.forEach(capture => {
             const captureOfGroup = document.createElement('li')
             captureOfGroup.innerHTML = `<a href=captureShow.html?id=${capture.id}>Capture #: ${capture.id}</a>`
-            const getCaptureslist = document.querySelector('#captures-list-ul')
+            const getCaptureslist = document.getElementById('captures-list')
             // console.log('getCaptureslist', getCaptureslist);
             getCaptureslist.append(captureOfGroup)
         });
