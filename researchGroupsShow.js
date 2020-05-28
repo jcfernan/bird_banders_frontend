@@ -31,17 +31,19 @@ function displayGroup(group){
     divForGroup.append(groupItem)
 
     const ul = document.createElement('ul')
+    ul.className = group.id
     divForGroup.append(ul, joinButton)
 
-    displayUsers(group.memberships, ul)
+    displayUsers(group.memberships, ul, group.id)
 
 }
 
-function displayUsers(members, ul){
+function displayUsers(members, ul, groupName){
     
     members.forEach(member => {
         const memberName = member.user.name
         const memberListItem = document.createElement('li');
+        //memberListItem.className = groupName
         // console.log('member', member.user.id);
         
         memberListItem.innerHTML = `<a href=userShow.html?id=${member.user.id}>${memberName}</a>`
@@ -142,7 +144,17 @@ function saveNewMembershipToDB(groupId, event){
                     body: JSON.stringify(newMembership)
                 })
                 .then(parseJSON)
-                .then("saved to db: ", console.log)
+                .then(renderOnPage)
+
+            function renderOnPage(response){
+                const selectorItem = newMembership.membership.research_group_id
+                const getGroupDivForRender = document.getElementsByClassName(selectorItem)[0]
+                console.log('getgroupdivforrender', getGroupDivForRender);
+                const newJoin = document.createElement('li')
+                newJoin.innerHTML = `<a href=userShow.html?id=${newMembership.membership.user_id}>${localStorage.username}</a>`
+                getGroupDivForRender.append(newJoin)
+                
+            }
         }
     }
 
