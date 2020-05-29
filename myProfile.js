@@ -1,5 +1,5 @@
 console.log('Hello from my profile page');
-
+const logoutButton = document.getElementById('loginbutton')
 const authHeaders = {
     Authorization: `bearer ${localStorage.token}`
 }
@@ -11,6 +11,22 @@ function guardPage(){
         window.location.href = "/"
         window.alert("Please log in to see your profile");
     }
+}
+
+setIsLoggedIn()
+function setIsLoggedIn(){
+    console.log('token', localStorage.getItem("token"));
+
+    if (localStorage.token){
+        logoutButton.textContent = `(${localStorage.username}) logout`
+    }
+    else {
+        logoutButton.textContent = "login"
+    }
+    
+    // isLoggedIn.textContent = localStorage.getItem("token")
+    // ? `Hello, ${localStorage.getItem('username')}, you are logged in`
+    // : "You are not logged in"
 }
 
 fetch("http://localhost:3000/secret-profiles", {
@@ -69,7 +85,9 @@ function displayMyGroups(response){
 
     function createGroupsContainer(){
         const userGroupsDiv = document.createElement('div')
-        document.body.append(userGroupsDiv)
+        const getWebPage = document.querySelector('.webpage')
+        // document.body.append(userGroupsDiv)
+        getWebPage.append(userGroupsDiv)
         return userGroupsDiv
     }
 
@@ -124,3 +142,13 @@ function displayMyGroups(response){
         }
     }
 }
+
+function logout(){
+    localStorage.removeItem("token")
+    localStorage.removeItem('username')
+}
+
+logoutButton.addEventListener("click", ()=>{
+    logout()
+    setIsLoggedIn()
+})

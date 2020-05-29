@@ -3,106 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <script src="researchGroupShow.js"></script>
+    <script defer src="researchGroupShow.js"></script>
     <title>Research Group Page</title>
     <link rel="stylesheet" 
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
     crossorigin="anonymous">
+    <link rel="stylesheet" href="researchGroup.css">
 </head>
 <body>
-    <div class="nav-bar">
-        <a href="/index.html">| Home |</a>
-        <a href="/myProfile.html">| My profile |</a>
-        <a href="/researchGroups.html">| Research Groups |</a>
-        <a href="/uploadData.html">| Upload Data |</a>
-        <a href="/queries.html">| Queries |</a>
+  <div class="webpage">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Bird Banders</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/myProfile.html">My Profile</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/researchGroups.html">Research Groups</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/uploadData.html">Upload Data</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/queries.html">Queries</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link login-button" href="">Login</a>
+        </li>
+      </ul>
     </div>
+  </nav>
 
-    <div id="title-div"></div>
 
-    <div style="text-align: center;" id="group-title"></div>
-    <div >
 
-      <button class="btn btn-primary" 
-              type="button" 
-              data-toggle="collapse" 
-              data-target="#Example1" 
-              aria-expanded="false" 
-              aria-controls="Example1"
-          >Group Members:</button>
-    <!-- </div>
+<div id="title-container">
+  <div id="title-div"></div>
+  <div id="join-button-div"></div>
+  <div id="message-div"></div>
+</div>
 
-    <div class="collapse" id="collapseExample">
-      <div class="card card-body">
-        <ul id="group-members-list-ul"></ul>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+          aria-selected="true">Group Members:</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+          aria-selected="false">Birds associated with this group:</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+          aria-selected="false">Captures associated with this group:</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <ol id="group-members-list-ul"></ol>
       </div>
-    </div> -->
-
-      <button class="btn btn-primary" 
-              type="button" 
-              data-toggle="collapse" 
-              data-target="#Example2" 
-              aria-expanded="false" 
-              aria-controls="Example2"
-      >Birds associated with this group:</button>
-    <!-- </div>
-
-      <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-          <ul id="birds-list"></ul>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <ol id="birds-list"></ol>
       </div>
-    </div> -->
-
-  <button class="btn btn-primary" 
-          type="button" 
-          data-toggle="collapse" 
-          data-target="#Example3" 
-          aria-expanded="false" 
-          aria-controls="Example3"
-  >Captures associated with this group:</button>
-<!-- </div>
-
-  <div class="collapse" id="collapseExample">
-    <div id="group-members-list" class="card card-body">
-      <ul id="captures-list"></ul>
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <ol id="captures-list"></ol>
+      </div>
     </div>
-  </div> -->
+  </div>
+</div>
 
-    <!-- <div id="birds-list">
-        <h2>Birds associated with this group: </h2>
-        <ul id="birds-list-ul"></ul>
-    </div>
-    <div id="captures-list">
-        <h2>Captures associated with this group: </h2>
-        <ul id="captures-list-ul"></ul>
-    </div> -->
-
-    <div class="row">
-
-      <div class="col">
-        <div class="collapse multi-collapse" id="Example1">
-          <div class="card card-body">
-            <ul id="group-members-list-ul" ></ul>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="collapse multi-collapse" id="Example2">
-          <div class="card card-body">
-            <ul id="birds-list"></ul>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="collapse multi-collapse" id="Example3">
-          <div class="card card-body">
-            <ul id="captures-list"></ul>
-          </div>
-        </div>
-      </div>
-
-    </div>
 
 
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 

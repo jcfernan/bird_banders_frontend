@@ -15,11 +15,12 @@ return response.json()
 }
 
 function displayGroupName(group){
+    const titleContainer = document.getElementById('title-div')
     const groupTitle = document.createElement('h2');
     groupTitle.textContent = group.name
 
-    const getTitleDiv = document.getElementById('title-div')
-    getTitleDiv.append(groupTitle)
+    // const getTitleDiv = document.getElementById('title-div')
+    titleContainer.append(groupTitle)
     return group
 }
 
@@ -179,7 +180,8 @@ function getMembers(group){
                     const alreadyMessage = document.createElement('p')
                     alreadyMessage.id = "already-message"
                     alreadyMessage.textContent = 'You have successfully joined this group!'
-                    titleDivAgain.append(alreadyMessage)
+                    const titleContainer = document.getElementById('message-div')
+                    titleContainer.append(alreadyMessage)
                     return
                 }
 
@@ -193,13 +195,44 @@ function getMembers(group){
                 const alreadyMessage2 = document.createElement('p')
                 alreadyMessage2.id = "already-message"
                 alreadyMessage2.textContent = 'You are already part of this group!'
+                const titleContainer = document.getElementById('message-div')
 
-                titleDivAgain.append(alreadyMessage2)
+                titleContainer.append(alreadyMessage2)
             }
             
         }
+        const titleContainer = document.getElementById('join-button-div')
+        // titleDivAgain.append(joinButton)
+        titleContainer.append(joinButton)
 
-        titleDivAgain.append(joinButton)
     }
 }
 
+const logoutButton = document.querySelector('.login-button')
+
+function setIsLoggedIn(){
+    console.log('token', localStorage.getItem("token"));
+
+    if (localStorage.token){
+        logoutButton.textContent = `(${localStorage.username}) logout`
+    }
+    else {
+        logoutButton.textContent = "login"
+    }
+    
+    // isLoggedIn.textContent = localStorage.getItem("token")
+    // ? `Hello, ${localStorage.getItem('username')}, you are logged in`
+    // : "You are not logged in"
+}
+
+setIsLoggedIn()
+
+function logout(){
+    localStorage.removeItem("token")
+    localStorage.removeItem('username')
+}
+
+logoutButton.addEventListener("click", ()=>{
+    logout()
+    setIsLoggedIn()
+})

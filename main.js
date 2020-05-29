@@ -4,7 +4,7 @@ const getloginFormDiv = document.querySelector('#login-forms-container')
 let getCreateAccountButton = document.querySelector('#create-account-button')
 const getProfileId = document.querySelector('#my-profile')
 const isLoggedIn = document.querySelector('.is-logged-in')
-const logoutButton = document.querySelector('#logout')
+const logoutButton = document.querySelector('.login-button')
 
 const authHeaders = {
     "Content-Type": "application/json",
@@ -13,6 +13,13 @@ const authHeaders = {
 
 function setIsLoggedIn(){
     console.log('token', localStorage.getItem("token"));
+
+    if (localStorage.token){
+        logoutButton.textContent = `(${localStorage.username}) logout`
+    }
+    else {
+        logoutButton.textContent = "login"
+    }
     
     isLoggedIn.textContent = localStorage.getItem("token")
     ? `Hello, ${localStorage.getItem('username')}, you are logged in`
