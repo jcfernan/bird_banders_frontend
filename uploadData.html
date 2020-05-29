@@ -9,7 +9,7 @@
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
         crossorigin="anonymous">
-        <link rel="stylesheet" href="researchGroup.css">
+        <link rel="stylesheet" href="uploadData.css">
     </head>
 <body>
     <div class="webpage">
@@ -45,8 +45,14 @@
           </div>
         </nav>
 
-
-    <h1>Upload Field Data</h1>
+        <div id="title-container">
+          <div id="title-div">
+            <h2 style="text-align: center; min-width: 100%;"  id="title">Upload Field Data</h2>
+          </div>
+          <div id="join-button-div"></div>
+          <div id="message-div"></div>
+        </div>
+  
 
     <form id="create-capture-form">
         <p id="messages"></p>
@@ -63,13 +69,7 @@
         <div></div>
         <p> </p>
         <input type="submit" value="Submit Bird Capture" id="capture-form">
-
         <p></p>
-
-    </form>
-    <p></p>
-    <form action="http://localhost:3001/index">
-        <input type="submit" value="Return to Index" />
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
