@@ -127,7 +127,7 @@ function saveNewMembershipToDB(groupId, event){
                 console.log('reponse[i]userid', response[i].user_id);
                 console.log('localstorage', localStorage.user_id);
                 
-                if (response[i].user_id == localStorage.user_id){
+                if (localStorage.token && response[i].user_id == localStorage.user_id){
                     console.log('You are already part of this group');
 
                     const checkForMessage = document.getElementById('already-message')
@@ -168,7 +168,7 @@ function saveNewMembershipToDB(groupId, event){
         }
 
         console.log('newmembership var', newMembership);
-        if (response){
+        if (response && localStorage.token){
             fetch(
                 membershipsURL, 
                 {
