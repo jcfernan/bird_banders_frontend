@@ -21,15 +21,19 @@ function displayUserInfo(user){
     const mainHeader = document.createElement('h3')
     mainHeader.textContent = `${user.username}'s page`
 
+    const getTitleDiv = document.getElementById('title')
+    getTitleDiv.textContent = user.username
 
-
-    getWebPage.append(userInfoContainer)
+    //getWebPage.append(userInfoContainer)
     getWebPage.append(birdInfoContainer)
     getWebPage.append(capturesInfoContainer)
     userInfoContainer.append(mainHeader)
 
-    displayName(user, userInfoContainer)
-    displayEmail(user, userInfoContainer)
+    const getUserInfoTab = document.getElementById('user-info-list')
+    
+
+    displayName(user, getUserInfoTab)
+    displayEmail(user, getUserInfoTab)
 }
 
 function displayName(user, userInfoContainer){
@@ -67,15 +71,17 @@ function displayGroups(researchGroups){
 }
 
 function createGroupsContainer(){
+    const getGroupsList = document.getElementById('groups-list')
+    //getGroupsList.append(groupName, birdCapTitle, groupList)
     const userGroupsDiv = document.createElement('div')
-    getWebPage.append(userGroupsDiv)
+    getGroupsList.append(userGroupsDiv)
     return userGroupsDiv
 }
 
 function createGroupsTitle(userGroupsDiv){
-    const UserGroupsList = document.createElement('h3')
-    UserGroupsList.textContent = "Groups this user is part of: "
-    userGroupsDiv.append(UserGroupsList)
+    // const UserGroupsList = document.createElement('h3')
+    // UserGroupsList.textContent = "Groups this user is part of: "
+    // userGroupsDiv.append(UserGroupsList)
 }
 
 function displayGroupNameAndCreateContainer(group, userGroupsDiv){

@@ -1,0 +1,118 @@
+html, body, .webpage {
+    min-height: 100% !important;
+    height: 100%;
+}
+
+body {
+    /* background-color: #313653; */
+    
+    background: url("images/Pluma_bluegreen.svg") center center fixed;
+
+}
+.webpage {
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+    min-height: 100%;
+    background-color: white;
+}
+
+#title-container {
+    display: inline-flex;
+    flex-direction: row;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    align-items: flex-end;
+    justify-content: start;
+    /* align-content: space-around; */
+    width: 100%;
+    /* margin: 0 100px; */
+    background-color: white;
+}
+
+#title-div {
+    width: 50%;
+    margin: 0 30px;
+}
+
+#title {
+    color: #626B43;
+}
+/* 
+#button-div {
+    width: 60%;
+    margin: 0 30px;
+}
+#message-div {
+    width: 60%;
+    margin: 0 30px;
+} */
+
+div#title-div > h2 {
+    color: #626B43;
+    margin-bottom: auto;
+}
+
+/* #join-button {
+    border-radius: 8px;
+    width: 100px;
+} */
+
+/* #already-message {
+    margin-bottom: auto;
+} */
+
+/* it is something below here */
+
+ol {
+    display: grid;
+    grid-auto-flow: column;
+    /* grid-template-columns: */
+    grid-template-rows: repeat(10, 50px);
+
+}
+
+ol li {
+    counter-increment: list;
+    list-style-type: none;
+    position: relative;
+
+  }
+  
+  ol li:before {
+    color: #acacac;
+    content: counter(list) ".";
+    left:-32px;
+    position: absolute;
+    text-align: right;
+    width: 26px;
+
+  }
+
+
+  .nav-tabs > li > a {
+    color: #A9BAAD;
+  }
+
+.active {
+    background-color: #f0f0f0;
+    border: #626B43;
+    border-bottom-style: solid;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #626B43;
+    background: rgb(240, 240, 240);
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+ol > ul {
+    /* color: red !important; */
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(10, 1.5fr);
+}
+
+#user-info-list {
+    padding-top: 50px;
+}
