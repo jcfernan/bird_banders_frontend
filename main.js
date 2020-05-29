@@ -34,7 +34,7 @@ function setIsLoggedIn(){
 
 setIsLoggedIn()
 loginForm.addEventListener("submit", handleLogin);
-//getCreateAccountButton.addEventListener("click", handleCreateAccountForm)
+getCreateAccountButton.addEventListener("click", handleCreateAccountForm)
 
 function handleGetUsers(){
     console.log('token: ', localStorage.token);
