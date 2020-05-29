@@ -185,7 +185,10 @@ function saveNewMembershipToDB(groupId, event){
                 console.log('getgroupdivforrender', getGroupDivForRender);
                 const newJoin = document.createElement('li')
                 newJoin.innerHTML = `<a href=userShow.html?id=${newMembership.membership.user_id}>${localStorage.username}</a>`
-                getGroupDivForRender.append(newJoin)
+                const getUlGrid = document.querySelector('.please-do-grid')
+                console.log('getulgrid', getUlGrid);
+                
+                getUlGrid.append(newJoin)
                 
             }
         }
