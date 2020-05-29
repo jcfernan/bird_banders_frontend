@@ -9,7 +9,7 @@
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
         crossorigin="anonymous">
-        <link rel="stylesheet" href="researchGroup.css">
+        <link rel="stylesheet" href="myProfile.css">
     </head>
 <body>
 
@@ -45,11 +45,45 @@
             </div>
           </nav>
 
-        <h1>My profile</h1>
-        <div id="user-info-container">
+
+        <div id="title-container">
+          <div id="title-div">
+              <h2 id="welcome-home-page">My Profile</h2>
+          </div>
+          <!-- <div id="join-button-div">
+              <p style="text-align: center;" class="is-logged-in">You are not logged in</p>
+          </div> -->
+          <!-- <div id="message-div">
+              <p class="user-message"></p>
+          </div> -->
         </div>
 
-
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+              aria-selected="true">Your Groups</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+              aria-selected="false">Your Info</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+              aria-selected="false">Your Bird Captures</a>
+          </li> -->
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <ol id="groups-list"></ol>
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <ol id="user-info-list"></ol>
+          </div>
+          <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <ol id="captures-list"></ol>
+          </div> -->
+        </div>
+      </div>
 
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 

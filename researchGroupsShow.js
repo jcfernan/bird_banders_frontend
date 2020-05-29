@@ -14,8 +14,35 @@ function displayGroups(groups){
 }
 
 function displayGroup(group){
+
+    let nextTab = $('#tabs li').length+1;
+    const userListContainer = document.createElement('div')
+    userListContainer.id = "user-list-container"
+	
+    // create the tab
+    $('<li><a href="#tab'+nextTab+'" class="group-tabs" data-toggle="tab">'+group.name+'</a></li>').appendTo('#tabs');
+    
+    // create the tab content
+    $('<div class="tab-pane" id="tab'+nextTab+'"></div>').appendTo('.tab-content');
+
+    // append ol to tab-pane class
+
+    const tabIdFinder = "#tab" + nextTab
+
+    $('<ol class="groups-ol" id="groupid-'+group.id+'"></ol>').appendTo(tabIdFinder);
+
+    const olIdFinder = `groupid-${group.id}`
+
+    const findGroupOl = document.getElementById(olIdFinder)
+
+    //set tab to active
+    $('#tabs a:first').tab('show');
+
+    
+
     const getList = document.querySelector('#research-list')
     const divForGroup = document.createElement('ul')
+    divForGroup.className = "research-list-name-ul"
     divForGroup.id = `group-id-${group.id}`
 
     getList.append(divForGroup)
@@ -31,9 +58,15 @@ function displayGroup(group){
     divForGroup.append(groupItem)
 
     const ul = document.createElement('ul')
-    ul.className = group.id
+    // ul.className = group.id
+    ul.className = "please-do-grid"
+    
     divForGroup.append(ul, joinButton)
 
+    //userListContainer.append(divForGroup)
+    
+    findGroupOl.append(divForGroup)
+    
     displayUsers(group.memberships, ul, group.id)
 
 }
@@ -43,6 +76,7 @@ function displayUsers(members, ul, groupName){
     members.forEach(member => {
         const memberName = member.user.name
         const memberListItem = document.createElement('li');
+        memberListItem.className = "grid-order"
         // console.log('member', member.user.id);
         
         memberListItem.innerHTML = `<a href=userShow.html?id=${member.user.id}>${memberName}</a>`

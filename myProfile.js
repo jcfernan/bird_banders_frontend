@@ -40,15 +40,15 @@ function parseJSON(response){
 }
 
 function displayUserInfo(response){
-    const userInfoContainer = document.querySelector('#user-info-container')
-    const usernameDisplay = document.createElement('p')
-    usernameDisplay.textContent = `My username: ${response.data.username}`
+    const userInfoContainer = document.querySelector('#user-info-list')
+    const usernameDisplay = document.createElement('li')
+    usernameDisplay.textContent = `Username: ${response.data.username}`
 
-    const nameDisplay = document.createElement('p')
-    nameDisplay.textContent = `My name: ${response.data.name}`
+    const nameDisplay = document.createElement('li')
+    nameDisplay.textContent = `Name: ${response.data.name}`
 
-    const emailDisplay = document.createElement('p')
-    emailDisplay.textContent = `My email: ${response.data.email}`
+    const emailDisplay = document.createElement('li')
+    emailDisplay.textContent = `Email: ${response.data.email}`
 
     userInfoContainer.append(usernameDisplay, nameDisplay, emailDisplay)
     
@@ -76,7 +76,14 @@ function displayMyGroups(response){
                 }
             });
         });
-        if (userGroupsDiv.children.length < 2){
+
+        const groupsList = document.querySelectorAll('#groups-list ul').length
+
+        console.log('groupslistlength', groupsList);
+        
+
+        //if (userGroupsDiv.children.length < 2){
+        if (groupsList < 2){
             const notPartOfGroup = document.createElement('p')
             notPartOfGroup.textContent = "You currently do not  belong to any groups."
             userGroupsDiv.append(notPartOfGroup)
@@ -92,9 +99,9 @@ function displayMyGroups(response){
     }
 
     function createGroupsTitle(userGroupsDiv){
-        const UserGroupsList = document.createElement('h3')
-        UserGroupsList.textContent = "Groups you are a part of: "
-        userGroupsDiv.append(UserGroupsList)
+        // const UserGroupsList = document.createElement('h3')
+        // UserGroupsList.textContent = "Groups you are a part of: "
+        // userGroupsDiv.append(UserGroupsList)
     }
 
     function displayGroupNameAndCreateContainer(group, userGroupsDiv){
@@ -102,37 +109,25 @@ function displayMyGroups(response){
         groupName.innerHTML = `<a href=research_group.html?id=${group.id}>${group.name}</a>`
         const groupList = document.createElement('ul')
         groupList.id = `group-${group.id}`
-
-        // const leaveGroupButton = document.createElement('button')
-        // leaveGroupButton.value = group.id
-        // leaveGroupButton.textContent = "Leave group"
-
-        // leaveGroupButton.addEventListener("click", handleLeaveGroup)
-        // function handleLeaveGroup(event, groupId){
-        //     console.log('clicked leave group', event.target.value);
-
-        //     const groupId2 = event.target.value
-        //     const user_id = localStorage.user_id
-            
-            
-            
-            
-                        
-        // }
         
         const birdCapTitle = document.createElement('p')
         birdCapTitle.textContent = "Bird entries I've submitted to this group:"
 
-        userGroupsDiv.append(groupName, birdCapTitle, groupList)
+        const getGroupsList = document.getElementById('groups-list')
+        getGroupsList.append(groupName, birdCapTitle, groupList)
+
+
+        //userGroupsDiv.append()
         return groupList
     }
 
     function displayBirdCaptures(membership, groupList){
+        const getBirdsList = document.getElementById('birds-list')
         const usersCaptures = membership.bird_captures
 
         usersCaptures.forEach(capture => {
             const captureListElement = document.createElement('li')
-            captureListElement.textContent = `Bird capture info: ${capture.id}`
+            captureListElement.textContent = `Captures: ${capture.id}`
             groupList.append(captureListElement)
         });
         if (usersCaptures < 1){
