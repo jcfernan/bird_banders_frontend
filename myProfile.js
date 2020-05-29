@@ -86,7 +86,8 @@ function displayMyGroups(response){
         if (groupsList < 2){
             const notPartOfGroup = document.createElement('p')
             notPartOfGroup.textContent = "You currently do not  belong to any groups."
-            userGroupsDiv.append(notPartOfGroup)
+            const getYourGroupsList = document.getElementById('groups-list')
+            getYourGroupsList.append(notPartOfGroup)
         }
     }
 
