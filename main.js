@@ -1,10 +1,14 @@
 const loginForm = document.querySelector('.login-form');
+//const loginForm = document.querySelector('#login-button-on-form');
 const getUsers = document.querySelector('#get-users');
 const getloginFormDiv = document.querySelector('#login-forms-container')
 let getCreateAccountButton = document.querySelector('#create-account-button')
 const getProfileId = document.querySelector('#my-profile')
 const isLoggedIn = document.querySelector('.is-logged-in')
 const logoutButton = document.querySelector('.login-button')
+
+console.log('loginform', loginForm);
+
 
 const authHeaders = {
     "Content-Type": "application/json",
@@ -18,17 +22,19 @@ function setIsLoggedIn(){
         logoutButton.textContent = `(${localStorage.username}) logout`
     }
     else {
+        console.log('hello from inside change login to logout');
+        
         logoutButton.textContent = "login"
     }
     
     isLoggedIn.textContent = localStorage.getItem("token")
-    ? `Hello, ${localStorage.getItem('username')}, you are logged in`
+    ? `Hello ${localStorage.getItem('username')}, you are logged in!`
     : "You are not logged in"
 }
 
 setIsLoggedIn()
 loginForm.addEventListener("submit", handleLogin);
-getCreateAccountButton.addEventListener("click", handleCreateAccountForm)
+//getCreateAccountButton.addEventListener("click", handleCreateAccountForm)
 
 function handleGetUsers(){
     console.log('token: ', localStorage.token);
@@ -42,6 +48,8 @@ function handleGetUsers(){
 
 function handleLogin(event){
     event.preventDefault();
+    setIsLoggedIn()
+    $('#modalLoginForm').modal('hide');
     const loginFormData = new FormData(event.target);
     const username = loginFormData.get("username");
     const password = loginFormData.get("password")

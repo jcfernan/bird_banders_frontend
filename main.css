@@ -1,0 +1,76 @@
+html, body, .webpage {
+    min-height: 100% !important;
+    height: 100%;
+}
+
+body {
+    /* background-color: #313653; */
+    
+    background: url("images/Pluma_bluegreen.svg") center center fixed;
+
+}
+.webpage {
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+    min-height: 100%;
+    background-color: white;
+}
+
+#title-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    background-color: white;
+}
+
+#title-div {
+    text-align: center;
+}
+
+div#title-div > h2 {
+    color: #626B43;
+    margin-bottom: auto;
+}
+
+ol {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(10, 1fr);
+}
+
+ol li {
+    counter-increment: list;
+    list-style-type: none;
+    position: relative;
+  }
+  
+  ol li:before {
+    color: #acacac;
+    content: counter(list) ".";
+    left:-32px;
+    position: absolute;
+    text-align: right;
+    width: 26px;
+  }
+
+
+  .nav-tabs > li > a {
+    color: #A9BAAD;
+  }
+
+.active {
+    background-color: #f0f0f0;
+    border: #626B43;
+    border-bottom-style: solid;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #626B43;
+    background: rgb(240, 240, 240);
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+.is-logged-in {
+    color: #BC7C69;
+}
