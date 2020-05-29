@@ -1,4 +1,5 @@
 console.log('Hello from user page');
+const getWebPage = document.querySelector('.webpage')
 
 user_query = new URLSearchParams(window.location.search)
 userId = user_query.get('id')
@@ -20,9 +21,11 @@ function displayUserInfo(user){
     const mainHeader = document.createElement('h3')
     mainHeader.textContent = `${user.username}'s page`
 
-    document.body.append(userInfoContainer)
-    document.body.append(birdInfoContainer)
-    document.body.append(capturesInfoContainer)
+
+
+    getWebPage.append(userInfoContainer)
+    getWebPage.append(birdInfoContainer)
+    getWebPage.append(capturesInfoContainer)
     userInfoContainer.append(mainHeader)
 
     displayName(user, userInfoContainer)
@@ -65,7 +68,7 @@ function displayGroups(researchGroups){
 
 function createGroupsContainer(){
     const userGroupsDiv = document.createElement('div')
-    document.body.append(userGroupsDiv)
+    getWebPage.append(userGroupsDiv)
     return userGroupsDiv
 }
 
@@ -93,3 +96,32 @@ function displayBirdCaptures(membership, groupList){
         groupList.append(captureListElement)
     });
 }
+
+const logoutButton = document.querySelector('.login-button')
+
+function setIsLoggedIn(){
+    console.log('token', localStorage.getItem("token"));
+
+    if (localStorage.token){
+        logoutButton.textContent = `(${localStorage.username}) logout`
+    }
+    else {
+        logoutButton.textContent = "login"
+    }
+    
+    // isLoggedIn.textContent = localStorage.getItem("token")
+    // ? `Hello, ${localStorage.getItem('username')}, you are logged in`
+    // : "You are not logged in"
+}
+
+setIsLoggedIn()
+
+function logout(){
+    localStorage.removeItem("token")
+    localStorage.removeItem('username')
+}
+
+logoutButton.addEventListener("click", ()=>{
+    logout()
+    setIsLoggedIn()
+})
