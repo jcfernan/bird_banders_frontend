@@ -72,6 +72,7 @@ function displayMyGroups(response){
 
                 if (membership.user_id == response.data.id){
                     const groupList = displayGroupNameAndCreateContainer(group, userGroupsDiv)
+
                     displayBirdCaptures(membership, groupList)
                 }
             });
@@ -83,9 +84,11 @@ function displayMyGroups(response){
         
 
         //if (userGroupsDiv.children.length < 2){
-        if (groupsList < 2){
+        
+        if (groupsList < 1){
             const notPartOfGroup = document.createElement('p')
             notPartOfGroup.textContent = "You currently do not  belong to any groups."
+            notPartOfGroup.id = "not-part"
             const getYourGroupsList = document.getElementById('groups-list')
             getYourGroupsList.append(notPartOfGroup)
         }
