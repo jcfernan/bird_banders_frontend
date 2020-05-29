@@ -3,9 +3,7 @@ html, body, .webpage {
     height: 100%;
 }
 
-body {
-    /* background-color: #313653; */
-    
+body {  
     background: url("images/Pluma_bluegreen.svg") center center fixed;
 
 }
@@ -17,15 +15,20 @@ body {
     background-color: white;
 }
 
-#title-container {
+/* #title-container {
+    display: inline-flex;
+    flex-direction: row;
     padding-top: 20px;
     padding-bottom: 20px;
+    align-items: flex-end;
+    justify-content: start;
     width: 100%;
     background-color: white;
-}
+} */
 
 #title-div {
-    text-align: center;
+    width: 50%;
+    margin: 0 30px;
 }
 
 div#title-div > h2 {
@@ -33,18 +36,22 @@ div#title-div > h2 {
     margin-bottom: auto;
 }
 
+
 ol {
-    display: grid;
+    /* display: grid;
     grid-auto-flow: column;
-    grid-template-rows: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 0.1fr); */
+    padding-top: 20px;
+
 }
 
 ol li {
     counter-increment: list;
     list-style-type: none;
     position: relative;
+
   }
-  
+ 
   ol li:before {
     color: #acacac;
     content: counter(list) ".";
@@ -52,6 +59,7 @@ ol li {
     position: absolute;
     text-align: right;
     width: 26px;
+
   }
 
 
@@ -71,10 +79,12 @@ ol li {
     border-bottom: 2px solid #f0f0f0;
   }
 
-.is-logged-in {
-    color: #BC7C69;
+ol > ul {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(10, 0.1fr);
 }
-
-.mb-4:hover {
-    background-color: #acacac;
-}
+ /* 
+#user-info-list {
+    padding-top: 50px;
+} */

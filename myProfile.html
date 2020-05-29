@@ -3,62 +3,69 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <script defer src="userShow.js"></script>
-        <title>User Show Page</title>
+        <script defer src="myProfile.js"></script>
+        <title>Research Group Page</title>
         <link rel="stylesheet" 
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
         crossorigin="anonymous">
-        <link rel="stylesheet" href="userShow.css">
+        <link rel="stylesheet" href="myProfile.css">
     </head>
 <body>
+
     <div class="webpage">
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">Bird Banders</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-      
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/myProfile.html">My Profile</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/researchGroups.html">Research Groups</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/uploadData.html">Upload Data</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/queries.html">Queries</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link login-button" href="">Login</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+            <a class="navbar-brand" href="#">Bird Banders</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="/myProfile.html">My Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/researchGroups.html">Research Groups</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/uploadData.html">Upload Data</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/queries.html">Queries</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link login-button" id="loginbutton" href="">Login</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
 
         <div id="title-container">
           <div id="title-div">
-            <h2 id="title">User</h2>
+              <h2 id="welcome-home-page">My Profile</h2>
           </div>
-          <div id="join-button-div"></div>
-          <div id="message-div"></div>
+          <!-- <div id="join-button-div">
+              <p style="text-align: center;" class="is-logged-in">You are not logged in</p>
+          </div> -->
+          <!-- <div id="message-div">
+              <p class="user-message"></p>
+          </div> -->
         </div>
-  
+
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-              aria-selected="true">Groups</a>
+              aria-selected="true">Your Groups</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-              aria-selected="false">Info</a>
+              aria-selected="false">Your Info</a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
@@ -77,10 +84,8 @@
           </div> -->
         </div>
       </div>
+
     </div>
-
-
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
     crossorigin="anonymous">

@@ -1,4 +1,5 @@
 console.log('Hello from user page');
+const getWebPage = document.querySelector('.webpage')
 
 user_query = new URLSearchParams(window.location.search)
 userId = user_query.get('id')
@@ -20,13 +21,19 @@ function displayUserInfo(user){
     const mainHeader = document.createElement('h3')
     mainHeader.textContent = `${user.username}'s page`
 
-    document.body.append(userInfoContainer)
-    document.body.append(birdInfoContainer)
-    document.body.append(capturesInfoContainer)
+    const getTitleDiv = document.getElementById('title')
+    getTitleDiv.textContent = user.username
+
+    //getWebPage.append(userInfoContainer)
+    getWebPage.append(birdInfoContainer)
+    getWebPage.append(capturesInfoContainer)
     userInfoContainer.append(mainHeader)
 
-    displayName(user, userInfoContainer)
-    displayEmail(user, userInfoContainer)
+    const getUserInfoTab = document.getElementById('user-info-list')
+    
+
+    displayName(user, getUserInfoTab)
+    displayEmail(user, getUserInfoTab)
 }
 
 function displayName(user, userInfoContainer){
@@ -64,15 +71,17 @@ function displayGroups(researchGroups){
 }
 
 function createGroupsContainer(){
+    const getGroupsList = document.getElementById('groups-list')
+    //getGroupsList.append(groupName, birdCapTitle, groupList)
     const userGroupsDiv = document.createElement('div')
-    document.body.append(userGroupsDiv)
+    getGroupsList.append(userGroupsDiv)
     return userGroupsDiv
 }
 
 function createGroupsTitle(userGroupsDiv){
-    const UserGroupsList = document.createElement('h3')
-    UserGroupsList.textContent = "Groups this user is part of: "
-    userGroupsDiv.append(UserGroupsList)
+    // const UserGroupsList = document.createElement('h3')
+    // UserGroupsList.textContent = "Groups this user is part of: "
+    // userGroupsDiv.append(UserGroupsList)
 }
 
 function displayGroupNameAndCreateContainer(group, userGroupsDiv){
@@ -93,3 +102,32 @@ function displayBirdCaptures(membership, groupList){
         groupList.append(captureListElement)
     });
 }
+
+const logoutButton = document.querySelector('.login-button')
+
+function setIsLoggedIn(){
+    console.log('token', localStorage.getItem("token"));
+
+    if (localStorage.token){
+        logoutButton.textContent = `(${localStorage.username}) logout`
+    }
+    else {
+        logoutButton.textContent = "login"
+    }
+    
+    // isLoggedIn.textContent = localStorage.getItem("token")
+    // ? `Hello, ${localStorage.getItem('username')}, you are logged in`
+    // : "You are not logged in"
+}
+
+setIsLoggedIn()
+
+function logout(){
+    localStorage.removeItem("token")
+    localStorage.removeItem('username')
+}
+
+logoutButton.addEventListener("click", ()=>{
+    logout()
+    setIsLoggedIn()
+})

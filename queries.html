@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <script defer src="researchGroupShow.js"></script>
-    <title>Research Group Page</title>
+    <script defer src="queries.js"></script>
+    <title>Queries Page</title>
     <link rel="stylesheet" 
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
     crossorigin="anonymous">
-    <link rel="stylesheet" href="researchGroup.css">
+    <link rel="stylesheet" href="queries.css">
 </head>
 <body>
   <div class="webpage">
@@ -29,17 +29,17 @@
         <li class="nav-item">
           <a class="nav-link" href="/myProfile.html">My Profile</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="/researchGroups.html">Research Groups</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/uploadData.html">Upload Data</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="/queries.html">Queries</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link login-button" href="">Login</a>
+          <a class="nav-link login-button" id="loginbutton" href="">Login</a>
         </li>
       </ul>
     </div>
@@ -48,41 +48,30 @@
 
 
 <div id="title-container">
-  <div id="title-div"></div>
-  <div id="join-button-div"></div>
-  <div id="message-div"></div>
-</div>
-
-
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-          aria-selected="true">Group Members:</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-          aria-selected="false">Birds associated with this group:</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-          aria-selected="false">Captures associated with this group:</a>
-      </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        <ol id="group-members-list-ul"></ol>
-      </div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <ol id="birds-list"></ol>
-      </div>
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-        <ol id="captures-list"></ol>
-      </div>
-    </div>
+  <div id="title-div">
+      <h2>Queries</h2>
   </div>
+  <!-- <div id="search-button-div">
+    <button>Search</button>
+  </div> -->
+  <!-- <div id="message-div">
+      <p>Search through databases and gain insights. This features is coming soon!</p>
+  </div> -->
 </div>
 
+<div id="message-div">
+  <p>Search through databases and gain insights. This features is coming soon!</p>
+</div>
+<div style="padding-left: 30px;" id="search-button-div">
+  <button >Search</button>
+</div>
 
+<!-- <div id="bird-logo">
+  <img style="height: 500px; margin: 20%; padding-top: 10%;" src="images/illustrator-3249914_1920.jpg" alt="colorful bird">
+</div> -->
+
+
+</div>
 
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
